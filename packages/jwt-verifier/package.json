@@ -1,0 +1,47 @@
+{
+  "name": "@serverless-jwt/jwt-verifier",
+  "version": "0.1.0",
+  "description": "JWT verification for Serverless environments",
+  "author": "Sandrino Di Mattia",
+  "homepage": "https://github.com/sandrinodimattia/serverless-jwt#readme",
+  "license": "MIT",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "directories": {
+    "lib": "dist"
+  },
+  "files": [
+    "dist/src/**"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandrinodimattia/serverless-jwt.git"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "prebuild": "npm run clean",
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo"
+  },
+  "bugs": {
+    "url": "https://github.com/sandrinodimattia/serverless-jwt/issues"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/lru-cache": "^5.1.0",
+    "@types/node-fetch": "^2.5.7",
+    "nock": "^13.0.2",
+    "timekeeper": "^2.2.0"
+  },
+  "dependencies": {
+    "abortcontroller-polyfill": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "limiter": "^1.1.5",
+    "lru-memoizer": "^2.1.2",
+    "node-fetch": "^2.6.0",
+    "wretch": "^1.7.2"
+  }
+}

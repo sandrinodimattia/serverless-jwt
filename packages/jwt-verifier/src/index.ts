@@ -13,7 +13,10 @@ import { DecodedToken } from './types';
 import { JwtVerifierError } from './errors';
 import { validateConfiguration, JwtVerifierOptions } from './config';
 
-class JwtVerifier {
+export { JwtVerifierOptions } from './config';
+export { ConfigurationError, JwtVerifierError } from './errors';
+
+export default class JwtVerifier {
   private keyStore: KeyStore;
 
   private options: JwtVerifierOptions;
@@ -100,6 +103,7 @@ class JwtVerifier {
         { audience: this.options.audience, issuer: this.options.issuer },
         async (err: VerifyErrors | null, decoded: any) => {
           if (err) {
+            // Token expired, change the error.
             if (err.name === 'TokenExpiredError') {
               const expiration = (err as TokenExpiredError).expiredAt;
               if (expiration) {
@@ -111,6 +115,7 @@ class JwtVerifier {
               return reject(new JwtVerifierError('jwt_expired', `The provided token expired`));
             }
 
+            // Token cannot be used yet, change the error.
             if (err.name === 'NotBeforeError') {
               const { date } = err as NotBeforeError;
               if (date) {
@@ -150,8 +155,6 @@ class JwtVerifier {
   }
 }
 
-export default JwtVerifier;
-
 /**
  * Helper to convert a claim value to an array.
  */
@@ -184,6 +187,24 @@ export function removeNamespaces(namespace: string, claims: Record<string, unkno
     }, {});
 }
 
+/**
+ * Get the token from the Authorization header
+ * @param header
+ */
+export function getTokenFromHeader(header: string): string {
+  if (typeof header === 'undefined' || header === null) {
+    throw new JwtVerifierError('invalid_header', `The Authorization header is missing or empty`);
+  }
+
+  const parts = header.split(' ');
+  if (parts.length !== 2 || parts[0] !== 'Bearer') {
+    throw new JwtVerifierError('invalid_header', `Unsupported format for the Authorization header`);
+  }
+
+  return parts[1];
+}
+
 module.exports = JwtVerifier;
 module.exports.claimToArray = claimToArray;
 module.exports.removeNamespaces = removeNamespaces;
+module.exports.getTokenFromHeader = getTokenFromHeader;

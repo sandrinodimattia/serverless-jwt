@@ -2,14 +2,14 @@
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "baseUrl": "./packages",
-    "composite": true,
-    "paths": {
-      "@serverless-jwt/jwt-verifier": ["jwt-verifier/src"]
-    }
+    "composite": true
   },
   "references": [
     {
       "path": "./packages/jwt-verifier/tsconfig.build.json"
+    },
+    {
+      "path": "./packages/netlify/tsconfig.build.json"
     }
   ]
 }
