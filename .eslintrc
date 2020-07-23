@@ -19,6 +19,7 @@
     "jest": true
   },
   "rules": {
+    "comma-dangle": "off",
     "func-names": ["error", "as-needed"],
     "no-shadow": "error",
     "prefer-const": 0,
@@ -26,6 +27,15 @@
     "@typescript-eslint/no-use-before-define": 0,
     "@typescript-eslint/camelcase": 0,
     "@typescript-eslint/no-var-requires": 0,
-    "@typescript-eslint/no-explicit-any": 0
+    "@typescript-eslint/no-explicit-any": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "/packages/*/test/*.ts",
+          "/packages/*/test/**/*.ts"
+        ]
+      }
+    ]
   }
 }
