@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./typings/*.d.ts"]
+  },
+  "exclude": ["node_modules", "dist"]
+}
