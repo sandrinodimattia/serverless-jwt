@@ -4,7 +4,17 @@
   "version": "0.1.0",
   "description": "JWT validation for Serverless environments",
   "scripts": {
-    "build": "lerna run build"
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna run clean",
+    "build": "lerna run build",
+    "lerna:publish": "lerna publish",
+    "lerna:version": "lerna version",
+    "release": "npm run build && npm run lerna:version && npm run lerna:publish",
+    "test": "npm run lint && npm run jest",
+    "test:watch": "npm run lint && npm run jest:watch",
+    "lint": "lint-staged",
+    "jest": "jest --runInBand --coverage",
+    "jest:watch": "jest --runInBand --coverage --watch"
   },
   "author": "Sandrino Di Mattia",
   "license": "MIT",
