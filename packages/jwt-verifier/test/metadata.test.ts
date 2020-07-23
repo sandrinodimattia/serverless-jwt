@@ -1,5 +1,5 @@
 import MetadataClient from '../src/metadata';
-import { MetadataError } from '../src/errors';
+import { JwtVerifierError } from '../src/errors';
 import {
   openidConfiguration,
   openidConfigurationSlow,
@@ -7,7 +7,8 @@ import {
   openidConfigurationNetworkFailure,
   jwksSlow,
   jwksFailure,
-  jwksNetworkFailure
+  jwksNetworkFailure,
+  jwks
 } from './helpers/oidc';
 
 jest.setTimeout(15000);
@@ -23,7 +24,7 @@ describe('#jwks', () => {
       openidConfigurationNetworkFailure(issuer);
 
       return metadata.getOpenIdConfiguration().catch((e) => {
-        expect(e).toBeInstanceOf(MetadataError);
+        expect(e).toBeInstanceOf(JwtVerifierError);
         expect(e.code).toMatch('network_error');
         expect(e.message).toMatch(`Failed to fetch '${issuer}/.well-known/openid-configuration': ENOTFOUND`);
       });
@@ -36,7 +37,7 @@ describe('#jwks', () => {
       openidConfigurationFailure(issuer);
 
       return metadata.getOpenIdConfiguration().catch((e) => {
-        expect(e).toBeInstanceOf(MetadataError);
+        expect(e).toBeInstanceOf(JwtVerifierError);
         expect(e.code).toMatch('http_error');
         expect(e.message).toMatch(
           `Failed to fetch '${issuer}/.well-known/openid-configuration': 429 Too Many Requests`
@@ -54,7 +55,7 @@ describe('#jwks', () => {
 
       return request.catch((e) => {
         jest.clearAllTimers();
-        expect(e).toBeInstanceOf(MetadataError);
+        expect(e).toBeInstanceOf(JwtVerifierError);
         expect(e.code).toMatch('timeout_error');
         expect(e.message).toMatch(`Failed to fetch '${issuer}/.well-known/openid-configuration': Request timed out`);
       });
@@ -85,7 +86,7 @@ describe('#jwks', () => {
       jwksNetworkFailure(issuer);
 
       return metadata.getJsonWebKeySet().catch((e) => {
-        expect(e).toBeInstanceOf(MetadataError);
+        expect(e).toBeInstanceOf(JwtVerifierError);
         expect(e.code).toMatch('network_error');
         expect(e.message).toMatch(`Failed to fetch '${issuer}/.well-known/jwks.json': ENOTFOUND`);
       });
@@ -98,7 +99,7 @@ describe('#jwks', () => {
       jwksFailure(issuer);
 
       return metadata.getJsonWebKeySet().catch((e) => {
-        expect(e).toBeInstanceOf(MetadataError);
+        expect(e).toBeInstanceOf(JwtVerifierError);
         expect(e.code).toMatch('http_error');
         expect(e.message).toMatch(`Failed to fetch '${issuer}/.well-known/jwks.json': 429 Too Many Requests`);
       });
@@ -112,7 +113,7 @@ describe('#jwks', () => {
 
       const request = metadata.getJsonWebKeySet();
       return request.catch((e) => {
-        expect(e).toBeInstanceOf(MetadataError);
+        expect(e).toBeInstanceOf(JwtVerifierError);
         expect(e.code).toMatch('timeout_error');
         expect(e.message).toMatch(`Failed to fetch '${issuer}/.well-known/jwks.json': Request timed out`);
       });
@@ -122,6 +123,7 @@ describe('#jwks', () => {
       expect.assertions(1);
 
       const metadata = new MetadataClient(issuer);
+      jwks(issuer);
 
       const keys = await metadata.getJsonWebKeySet();
       expect(keys).toHaveLength(2);
