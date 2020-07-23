@@ -65,6 +65,7 @@ dist
 
 # typescript build file
 tsconfig.tsbuildinfo
+tsconfig.build.tsbuildinfo
 
 # macos meta file
 .DS_Store
