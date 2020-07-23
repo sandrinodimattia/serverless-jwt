@@ -1,4 +1,4 @@
-const NetlifyJwtVerifier = require('../../../../../packages/netlify/dist/src');
+const NetlifyJwtVerifier = require('@serverless-jwt/netlify');
 
 const json = (statusCode, body) => {
   return {
