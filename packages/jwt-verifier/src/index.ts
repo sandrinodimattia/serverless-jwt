@@ -16,7 +16,7 @@ import { validateConfiguration, JwtVerifierOptions } from './config';
 export { JwtVerifierOptions } from './config';
 export { ConfigurationError, JwtVerifierError } from './errors';
 
-export default class JwtVerifier {
+export class JwtVerifier {
   private keyStore: KeyStore;
 
   private options: JwtVerifierOptions;
@@ -203,8 +203,3 @@ export function getTokenFromHeader(header: string): string {
 
   return parts[1];
 }
-
-module.exports = JwtVerifier;
-module.exports.claimToArray = claimToArray;
-module.exports.removeNamespaces = removeNamespaces;
-module.exports.getTokenFromHeader = getTokenFromHeader;
