@@ -1,0 +1,14 @@
+{
+  "name": "netlify-functions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "netlify dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "netlify-cli": "^2.58.0"
+  }
+}

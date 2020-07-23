@@ -27,7 +27,7 @@ export default class JwtVerifier {
     this.options = options;
     this.keyStore = new KeyStore({
       requestsPerMinute: 10,
-      cacheSize: 5,
+      cacheSize: 10,
       cacheTTL: 10 * 60000,
       issuer: options.issuer
     });

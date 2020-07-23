@@ -1,7 +1,17 @@
-import JwtVerifier, { JwtVerifierOptions, getTokenFromHeader, JwtVerifierError } from '@serverless-jwt/jwt-verifier';
+import JwtVerifier, {
+  JwtVerifierOptions,
+  claimToArray,
+  removeNamespaces,
+  getTokenFromHeader,
+  JwtVerifierError
+} from '@serverless-jwt/jwt-verifier';
 
 interface Event {
   headers: Record<string, unknown>;
+}
+
+interface NetlifyJwtVerifier {
+  (handler: any): (event: Event, context: any, cb: any) => Promise<any>;
 }
 
 interface NetlifyJwtVerifierOptions extends JwtVerifierOptions {
@@ -59,7 +69,19 @@ const validateJWT = (verifier: JwtVerifier, options: NetlifyJwtVerifierOptions) 
   };
 };
 
-module.exports = (options: NetlifyJwtVerifierOptions) => {
+/**
+ * Create a JWT verifier handler.
+ * @param options
+ */
+const NetlifyJwtVerifier = (options: NetlifyJwtVerifierOptions): NetlifyJwtVerifier => {
   const verifier = new JwtVerifier(options);
   return validateJWT(verifier, options);
 };
+
+export default NetlifyJwtVerifier;
+export { claimToArray, removeNamespaces, getTokenFromHeader } from '@serverless-jwt/jwt-verifier';
+
+module.exports = NetlifyJwtVerifier;
+module.exports.claimToArray = claimToArray;
+module.exports.removeNamespaces = removeNamespaces;
+module.exports.getTokenFromHeader = getTokenFromHeader;
