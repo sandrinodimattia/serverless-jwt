@@ -5,7 +5,7 @@ import { URLSearchParams } from 'url';
 import { AbortController, abortableFetch } from 'abortcontroller-polyfill/dist/cjs-ponyfill';
 
 import { semaphore } from './utils';
-import { MetadataError } from './errors';
+import { JwtVerifierError } from './errors';
 
 function get(url: string): Promise<{ [key: string]: any }> {
   return new Promise((resolve, reject) => {
@@ -17,17 +17,17 @@ function get(url: string): Promise<{ [key: string]: any }> {
       .then((res) => resolve(res))
       .catch((e) => {
         if (e.name === 'AbortError') {
-          return reject(new MetadataError('timeout_error', `Failed to fetch '${url}': Request timed out`));
+          return reject(new JwtVerifierError('timeout_error', `Failed to fetch '${url}': Request timed out`));
         }
 
         if (e.status) {
           return reject(
-            new MetadataError('http_error', `Failed to fetch '${url}': ${e.status} ${STATUS_CODES[e.status]}`)
+            new JwtVerifierError('http_error', `Failed to fetch '${url}': ${e.status} ${STATUS_CODES[e.status]}`)
           );
         }
 
         return reject(
-          new MetadataError('network_error', `Failed to fetch '${url}': ${e.code || e.errno || e.message}`)
+          new JwtVerifierError('network_error', `Failed to fetch '${url}': ${e.code || e.errno || e.message}`)
         );
       });
   });
@@ -79,7 +79,7 @@ export default class MetadataClient {
 
     const metadata = await this.metadataSemaphore(() => this.getOpenIdConfiguration());
     if (typeof metadata.jwks_uri === 'undefined' || metadata.jwks_uri === null) {
-      throw new MetadataError(
+      throw new JwtVerifierError(
         'openid_configuration',
         'The OpenID configuration endpoint does not contain a valid jwks_uri'
       );
@@ -97,7 +97,7 @@ export default class MetadataClient {
 
     const res = await get(jwksUri);
     if (!res.keys) {
-      throw new MetadataError('jwks_error', 'The JSON Web Key Set does not contain any keys');
+      throw new JwtVerifierError('jwks_error', 'The JSON Web Key Set does not contain any keys');
     }
 
     return res.keys;

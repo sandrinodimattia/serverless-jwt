@@ -7,12 +7,12 @@ export class ConfigurationError extends Error {
   }
 }
 
-export class MetadataError extends Error {
+export class JwtVerifierError extends Error {
   public code: string;
 
   constructor(code: string, message: string) {
     super(message);
-    Object.setPrototypeOf(this, MetadataError.prototype);
+    Object.setPrototypeOf(this, JwtVerifierError.prototype);
 
     this.code = code;
   }
