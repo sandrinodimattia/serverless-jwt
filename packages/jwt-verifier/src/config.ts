@@ -1,11 +1,35 @@
+import { DecodedToken } from './types';
+
 export interface JwtVerifierOptions {
+  /**
+   * Issuer to validate (eg: https://auth.sandrino.dev/)
+   */
   issuer: string;
+
+  /**
+   * Audience to validate (eg: https://my.com/api)
+   */
   audience: string;
+
+  /**
+   * Function which allows you to map claims.
+   */
+  mapClaims?: (token: DecodedToken) => Promise<DecodedToken>;
+}
+
+function optionalFunction(setting: string, value: any) {
+  if (typeof value === 'undefined' || value === null) {
+    return;
+  }
+
+  if (typeof value !== 'function' || value === null) {
+    throw new TypeError(`Expected '${setting}' to be a function, got '${typeof value}'`);
+  }
 }
 
 function requireString(setting: string, value: any) {
   if (typeof value !== 'string' || value === null) {
-    throw new TypeError(`Expected '${setting}' to be string, got ${typeof value}`);
+    throw new TypeError(`Expected '${setting}' to be string, got '${typeof value}'`);
   }
 
   if (value.length === 0) {
@@ -27,4 +51,5 @@ export function validateConfiguration(options: JwtVerifierOptions): void {
   requireString('issuer', options.issuer);
   requireUri('issuer', options.issuer);
   requireString('audience', options.audience);
+  optionalFunction('mapClaims', options.mapClaims);
 }

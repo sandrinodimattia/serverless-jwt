@@ -14,7 +14,7 @@ describe('#config', () => {
     const validate = () =>
       validateConfiguration({
         issuer: '',
-        audience: '',
+        audience: ''
       });
 
     expect(validate).toThrow(`Expected 'issuer' to be a valid string, got ''`);
@@ -24,15 +24,15 @@ describe('#config', () => {
     expect(() => {
       const config: any = {
         issuer: 5,
-        audience: '',
+        audience: ''
       };
       validateConfiguration(config);
-    }).toThrow(`Expected 'issuer' to be string, got number`);
+    }).toThrow(`Expected 'issuer' to be string, got 'number'`);
 
     expect(() =>
       validateConfiguration({
         issuer: 'foo',
-        audience: '',
+        audience: ''
       })
     ).toThrow(`Expected 'issuer' to be a valid http(s) uri, got 'foo'`);
   });
@@ -41,9 +41,20 @@ describe('#config', () => {
     const validate = () =>
       validateConfiguration({
         issuer: 'https://acme',
-        audience: '',
+        audience: ''
       });
 
     expect(validate).toThrow(`Expected 'audience' to be a valid string, got ''`);
+  });
+
+  it('should validate mapClaims', async () => {
+    expect(() => {
+      const config: any = {
+        issuer: 'https://acme',
+        audience: 'https://acme',
+        mapClaims: 1
+      };
+      validateConfiguration(config);
+    }).toThrow(`Expected 'mapClaims' to be a function, got 'number'`);
   });
 });
