@@ -7,6 +7,7 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "importHelpers": true,
+    "allowJs": false,
     "target": "es5",
     "module": "commonjs",
     "allowSyntheticDefaultImports": true,
@@ -21,5 +22,5 @@
     "strict": true,
     "noUnusedLocals": true
   },
-  "exclude": ["node_modules"]
+  "exclude": ["examples", "node_modules"]
 }
