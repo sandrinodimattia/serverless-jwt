@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](https://github.com/sandrinodimattia/serverless-jwt/compare/v0.1.5...v0.1.6) (2020-07-24)
+
+### Bug Fixes
+
+- **netlify:** renamed user to claims in the identity context ([276c5ab](https://github.com/sandrinodimattia/serverless-jwt/commit/276c5ab76dd1df94974c5171d23faff851e6d217))
+
 ## [0.1.4](https://github.com/sandrinodimattia/serverless-jwt/compare/v0.1.3...v0.1.4) (2020-07-24)
 
 **Note:** Version bump only for package @serverless-jwt/netlify
