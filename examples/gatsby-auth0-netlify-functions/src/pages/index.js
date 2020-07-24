@@ -15,7 +15,7 @@ export default function Home() {
         audience: process.env.GATSBY_AUTH0_AUDIENCE
       });
 
-      const api = await fetch('/.netlify/functions/' + path, {
+      const api = await fetch('/.netlify/functions' + path, {
         headers: {
           authorization: 'Bearer ' + token
         }
