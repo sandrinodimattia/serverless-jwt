@@ -26,7 +26,7 @@ const validateJWT = (verifier: JwtVerifier, options: NextJwtVerifierOptions) => 
         return options.handleError(res, err);
       }
 
-      res.status(401).json({
+      return res.status(401).json({
         error: err.code,
         error_description: err.message
       });
