@@ -10,6 +10,9 @@
     },
     {
       "path": "./packages/netlify/tsconfig.build.json"
+    },
+    {
+      "path": "./packages/next/tsconfig.build.json"
     }
   ]
 }

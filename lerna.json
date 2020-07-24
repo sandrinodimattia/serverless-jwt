@@ -6,7 +6,6 @@
       "message": "chore(release): publish %s",
       "allowBranch": "master",
       "exact": true,
-      "createRelease": "github",
       "conventionalCommits": true
     },
     "bootstrap": {
