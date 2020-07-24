@@ -1,6 +1,6 @@
 {
   "name": "@serverless-jwt/next",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "JWT verification for Next.js API Routes",
   "author": "Sandrino Di Mattia",
   "homepage": "https://github.com/sandrinodimattia/serverless-jwt#readme",
