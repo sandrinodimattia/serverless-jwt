@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true,
+    "browser": true
+  },
+  "rules": {
+    "react/prop-types": 0,
+    "comma-dangle": "off",
+    "func-names": ["error", "as-needed"],
+    "no-shadow": "error",
+    "prefer-const": 0
+  }
+}
