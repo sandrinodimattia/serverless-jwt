@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.0.0",
-    "@serverless-jwt/netlify": "^0.1.4",
+    "@serverless-jwt/netlify": "0.1.6",
     "dotenv": "^8.2.0",
     "gatsby": "^2.23.12",
     "node-fetch": "^2.6.0",

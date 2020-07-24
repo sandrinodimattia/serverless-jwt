@@ -34,10 +34,10 @@ module.exports.requireAuth = verifyJwt;
  */
 module.exports.requireScope = (scope, handler) =>
   verifyJwt(async (event, context, cb) => {
-    const { user } = context.identityContext;
+    const { claims } = context.identityContext;
 
     // Require the token to contain a specific scope.
-    if (!user || !user.scope || user.scope.indexOf(scope) === -1) {
+    if (!claims || !claims.scope || claims.scope.indexOf(scope) === -1) {
       return json(403, {
         error: 'access_denied',
         error_description: `Token does not contain the required '${scope}' scope`
@@ -55,10 +55,10 @@ module.exports.requireScope = (scope, handler) =>
  */
 module.exports.requireRole = (role, handler) =>
   verifyJwt(async (event, context, cb) => {
-    const { user } = context.identityContext;
+    const { claims } = context.identityContext;
 
     // Require the user to have a specific role.
-    if (!user || !user.roles || user.roles.indexOf(role) === -1) {
+    if (!claims || !claims.roles || claims.roles.indexOf(role) === -1) {
       return json(403, {
         error: 'access_denied',
         error_description: `User does not have the '${role}' role`

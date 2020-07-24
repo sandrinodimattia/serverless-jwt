@@ -4,11 +4,11 @@ const { requireAuth } = require('../../lib/auth');
 
 exports.handler = requireAuth(async (event, context) => {
   try {
-    const { user } = context.identityContext;
+    const { claims } = context.identityContext;
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ user })
+      body: JSON.stringify({ claims })
     };
   } catch (err) {
     return {
