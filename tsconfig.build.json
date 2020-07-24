@@ -6,7 +6,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "allowJs": false,
     "target": "es5",
     "module": "commonjs",

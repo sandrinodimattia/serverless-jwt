@@ -15,6 +15,18 @@ interface NetlifyJwtVerifierOptions extends JwtVerifierOptions {
   handleError?(err: Error | JwtVerifierError): Record<string, unknown>;
 }
 
+export interface IdentityContext {
+  /**
+   * The token that was provided.
+   */
+  token: string;
+
+  /**
+   * Claims for the authenticated user.
+   */
+  claims: Record<string, unknown>;
+}
+
 /**
  * Return a JSON response.
  * @param statusCode
@@ -35,12 +47,12 @@ const json = (statusCode: number, body: Record<string, unknown>) => {
  */
 const validateJWT = (verifier: JwtVerifier, options: NetlifyJwtVerifierOptions) => {
   return (handler: any) => async (event: Event, context: any, cb: any) => {
-    let user;
+    let claims;
     let accessToken;
 
     try {
       accessToken = getTokenFromHeader(event.headers.authorization as string);
-      user = await verifier.verifyAccessToken(accessToken);
+      claims = await verifier.verifyAccessToken(accessToken);
     } catch (err) {
       if (typeof options.handleError !== 'undefined' && options.handleError !== null) {
         return options.handleError(err);
@@ -53,10 +65,11 @@ const validateJWT = (verifier: JwtVerifier, options: NetlifyJwtVerifierOptions) 
     }
 
     // Expose the identity in the client context.
-    context.identityContext = {
+    const ctx: IdentityContext = {
       token: accessToken,
-      user
+      claims
     };
+    context.identityContext = ctx;
 
     // Continue.
     return handler(event, context, cb);
