@@ -1,7 +1,4 @@
-/* eslint-disable no-restricted-globals */
-/* eslint-disable no-undef */
-
-const JwtVerifier = require('../../packages/jwt-verifier/dist/src');
+const JwtVerifier = require('@serverless-jwt/jwt-verifier');
 
 const jwt = new JwtVerifier({
   issuer: 'https://auth.sandrino.dev/',
