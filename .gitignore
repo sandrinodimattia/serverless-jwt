@@ -75,3 +75,7 @@ tsconfig.build.tsbuildinfo
 
 # Package lock
 package-lock.json
+
+# Gatsby
+.cache
+public

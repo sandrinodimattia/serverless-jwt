@@ -1,0 +1,28 @@
+{
+  "name": "gatsby-auth0-netlify-functions",
+  "private": true,
+  "scripts": {
+    "netlify:dev": "netlify dev",
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@auth0/auth0-react": "^1.0.0",
+    "@serverless-jwt/netlify": "^0.1.4",
+    "dotenv": "^8.2.0",
+    "gatsby": "^2.23.12",
+    "node-fetch": "^2.6.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "gatsby-plugin-create-client-paths": "^2.3.10",
+    "gatsby-plugin-postcss": "^2.3.11",
+    "netlify-cli": "^2.58.0",
+    "prettier": "2.0.5",
+    "tailwindcss": "^1.5.2"
+  }
+}
