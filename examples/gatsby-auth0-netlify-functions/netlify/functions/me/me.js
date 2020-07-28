@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const { requireAuth } = require('../../lib/auth');
 
 exports.handler = requireAuth(async (event, context) => {

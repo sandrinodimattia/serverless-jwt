@@ -2,7 +2,7 @@
   "name": "gatsby-auth0-netlify-functions",
   "private": true,
   "scripts": {
-    "netlify:dev": "netlify dev",
+    "start:dev": "netlify dev",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.0.0",
-    "@serverless-jwt/netlify": "0.1.7",
+    "@serverless-jwt/netlify": "0.1.8",
     "dotenv": "^8.2.0",
     "gatsby": "^2.23.12",
     "node-fetch": "^2.6.0",

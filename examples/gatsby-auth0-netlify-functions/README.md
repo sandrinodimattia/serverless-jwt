@@ -50,4 +50,4 @@ To test this application locally you'll need to:
 1. Create an application in Auth0 of type "Single Page Application" and configure `http://localhost:8888` as the Allowed Callback URL, Allowed Logout URL, Allowed Web Origins and Allowed CORS.
 2. Create an API in Auth0 (eg: with identifier `urn:tv-shows`) and create a permission for that API (eg: `read:shows`)
 3. Rename the `.env-template` file to `.env` and update all of the settings there.
-4. Run `npm run netlify:dev` which will run the Gatsby application and the Netlify functions.
+4. Run `npm run start:dev` which will run the Gatsby application and the Netlify functions.
