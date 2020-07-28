@@ -19,7 +19,7 @@ If you have such an application, read along! We'll be adding examples over time 
 Your React/Vue/Angular/... code will be interacting with your Serverless functions using `fetch` or any other HTTP client. These calls will need to be made by providing the access token as part of the `Authorization` header:
 
 ```bash
-Authorization: Bearer <access_token0>
+Authorization: Bearer <access_token>
 ```
 
 Here's an example:
