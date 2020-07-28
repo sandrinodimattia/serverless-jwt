@@ -1,26 +1,24 @@
-# @serverless-jwt/netlify
+# @serverless-jwt/next
 
-JWT authorization for Netlify Functions. Usage is easy:
+JWT authorization for Next.js API Routes. Usage is easy:
 
 ```js
-const { NetlifyJwtVerifier } = require('@serverless-jwt/netlify');
+import { NextJwtVerifier } from '@serverless-jwt/next';
 
-const verifyJwt = NetlifyJwtVerifier({
+const verifyJwt = NextJwtVerifier({
   issuer: 'https://sandrino.auth0.com/',
   audience: 'urn:my-api'
 });
 
-const handler = async (event, context) => {
-  // The user information is available here.
+const apiRoute = async (req, res) => {
   const { claims } = context.identityContext;
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ profile: claims })
-  };
+  res.json({
+    user: claims
+  });
 };
 
-exports.handler = verifyJwt(handler);
+export default verifyJwt(apiRoute);
 ```
 
 ## Advanced Options
@@ -30,9 +28,9 @@ exports.handler = verifyJwt(handler);
 You can also provide a function to map the incoming claims to a format that is more usable in your application. This would allow you to rename certain claims or to change the claim from a string to an array:
 
 ```js
-const { NetlifyJwtVerifier, removeNamespaces, claimToArray } = require('@serverless-jwt/netlify');
+import { NextJwtVerifier, removeNamespaces, claimToArray } from '@serverless-jwt/next';
 
-const verifyJwt = NetlifyJwtVerifier({
+const verifyJwt = NextJwtVerifier({
   issuer: 'https://sandrino.auth0.com/',
   audience: 'urn:my-api',
   mapClaims: (claims) => {
