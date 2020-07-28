@@ -80,6 +80,24 @@ const MyInvoices = async (req, res) => {
 export default jwt(MyInvoices);
 ```
 
+## Integrations
+
+### Netlify Functions
+
+[@serverless-jwt/netlify](./packages/netlify)
+
+Examples:
+
+- [Gatsby & Netlify Functions using Auth0](./examples/gatsby-auth0-netlify-functions)
+
+### Next.js
+
+[@serverless-jwt/next](./packages/next)
+
+Examples:
+
+- [Securing Next.js API Routes using Auth0](./examples/nextjs-auth0)
+
 ## OpenID Connect Providers
 
 This library will work with any OpenID Connect Provider. Documentation for certain providers is available here:
