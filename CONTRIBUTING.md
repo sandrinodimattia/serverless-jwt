@@ -18,5 +18,5 @@ npm run lerna:bootstrap
 Then you can run the tests as follows:
 
 ```bash
-npm run lint && npm run jest:watch
+npm run test:watch
 ```
