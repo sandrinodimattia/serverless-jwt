@@ -79,3 +79,9 @@ const MyInvoices = async (req, res) => {
 
 export default jwt(MyInvoices);
 ```
+
+## OpenID Connect Providers
+
+This library will work with any OpenID Connect Provider. Documentation for certain providers is available here:
+
+- [Auth0](./docs/oidc-providers/auth0)

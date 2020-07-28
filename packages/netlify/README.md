@@ -44,22 +44,5 @@ const verifyJwt = NetlifyJwtVerifier({
     user.roles = claimToArray(user.roles);
     return user;
   }
-
 });
-
-/\*\*
-
-- Helper function to process the token claims before executing the function.
-  \*/
-  mapClaims: (claims) => {
-  // Custom claims added in Auth0 have a prefix, which are removed here.
-  const user = removeNamespaces('http://schemas.sandrino.dev/', claims);
-
-
-    // Convert the scope and roles claims to arrays so they are easier to work with.
-    user.scope = claimToArray(user.scope);
-    user.roles = claimToArray(user.roles);
-    return user;
-
-}
 ```
