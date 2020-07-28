@@ -77,5 +77,5 @@ const MyInvoices = async (req, res) => {
   });
 };
 
-export default jwt();
+export default jwt(MyInvoices);
 ```
