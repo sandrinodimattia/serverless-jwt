@@ -20,6 +20,8 @@
   "author": "Sandrino Di Mattia",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
     "@types/jest": "26.0.5",
     "@types/node": "14.0.24",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
@@ -42,8 +44,14 @@
   "husky": {
     "skipCI": false,
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "jest": {
     "globals": {
