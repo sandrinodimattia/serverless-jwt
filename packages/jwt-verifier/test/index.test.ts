@@ -1,4 +1,4 @@
-import JwtVerifier, { removeNamespaces, claimToArray } from '../src/index';
+import { JwtVerifier, removeNamespaces, claimToArray } from '../src/index';
 import { JwtVerifierError } from '../src/errors';
 
 import { privateKey } from './helpers/certs';
