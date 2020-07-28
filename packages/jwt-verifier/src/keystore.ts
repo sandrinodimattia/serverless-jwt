@@ -50,7 +50,7 @@ export default class KeyStore {
     // Add a caching function to make sure we're not adding too much of a delay when validating tokens.
     this.getKeyCached = cache({
       load: (kid: string, callback: (err: Error | null, key?: JsonWebKey) => void): void => {
-        limiter.removeTokens(1, (err, remaining) => {
+        limiter.removeTokens(1, (err: Error, remaining: number) => {
           if (err) {
             return callback(err);
           }
