@@ -1,0 +1,37 @@
+{
+  "name": "@serverless-jwt/cloudflare",
+  "version": "0.1.8",
+  "description": "JWT verification for Cloudflare Workers",
+  "author": "Sandrino Di Mattia",
+  "homepage": "https://github.com/sandrinodimattia/serverless-jwt#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "lib": "dist"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandrinodimattia/serverless-jwt.git"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "prebuild": "npm run clean",
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo && rm -rf tsconfig.build.tsbuildinfo"
+  },
+  "bugs": {
+    "url": "https://github.com/sandrinodimattia/serverless-jwt/issues"
+  },
+  "dependencies": {
+    "@serverless-jwt/jwt-verifier": "0.1.8",
+    "@types/node-fetch": "^2.5.7",
+    "node-fetch": "^2.6.0"
+  }
+}
