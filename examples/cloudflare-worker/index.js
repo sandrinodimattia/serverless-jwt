@@ -1,27 +1,14 @@
-const { JwtVerifier, getTokenFromHeader } = require('@serverless-jwt/jwt-verifier');
+const { CloudflareJwtVerifier } = require('@serverless-jwt/cloudflare');
 
-const jwt = new JwtVerifier({
+const requireAuth = new CloudflareJwtVerifier({
   issuer: 'https://auth.sandrino.dev/',
-  audience: 'urn:colors-api'
+  audience: 'https://api/tv-shows'
 });
 
 addEventListener('fetch', (event) => {
-  console.log(event);
   event.respondWith(handleRequest(event.request));
 });
 
-async function handleRequest(request) {
-  try {
-    const token = getTokenFromHeader(request.headers.get('Authorization'));
-    const body = await jwt.verifyAccessToken(token);
-
-    return new Response(`hello world: ${JSON.stringify(body, null, 2)}`);
-  } catch (e) {
-    return new Response(JSON.stringify({ error: e.code, error_description: e.message }), {
-      status: 400,
-      headers: {
-        'content-type': 'application/json;charset=UTF-8'
-      }
-    });
-  }
-}
+const handleRequest = requireAuth((identityContext, request) => {
+  return new Response(`hello world on ${request.url}: ${JSON.stringify(identityContext.claims, null, 2)}`);
+});
