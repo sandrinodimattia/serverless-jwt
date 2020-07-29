@@ -1,6 +1,6 @@
 {
   "name": "@serverless-jwt/netlify",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "JWT verification for Netlify Functions",
   "author": "Sandrino Di Mattia",
   "homepage": "https://github.com/sandrinodimattia/serverless-jwt#readme",
@@ -30,6 +30,6 @@
     "url": "https://github.com/sandrinodimattia/serverless-jwt/issues"
   },
   "dependencies": {
-    "@serverless-jwt/jwt-verifier": "0.1.8"
+    "@serverless-jwt/jwt-verifier": "0.2.0"
   }
 }
