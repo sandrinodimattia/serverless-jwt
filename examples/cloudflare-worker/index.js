@@ -17,6 +17,11 @@ async function handleRequest(request) {
 
     return new Response(`hello world: ${JSON.stringify(body, null, 2)}`);
   } catch (e) {
-    return new Response(e.message);
+    return new Response(JSON.stringify({ error: e.code, error_description: e.message }), {
+      status: 400,
+      headers: {
+        'content-type': 'application/json;charset=UTF-8'
+      }
+    });
   }
 }
