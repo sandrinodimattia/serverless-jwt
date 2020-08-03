@@ -1,5 +1,15 @@
 # @serverless-jwt/netlify
 
+![http://npmjs.com/package/@serverless-jwt/netlify](https://img.shields.io/npm/l/@serverless-jwt/jwt-verifier) ![http://npmjs.com/package/@serverless-jwt/netlify](https://img.shields.io/npm/v/@serverless-jwt/jwt-verifier)
+
+## Installation
+
+```bash
+npm install --save @serverless-jwt/netlify
+```
+
+## Using the library
+
 JWT authorization for Netlify Functions. Usage is easy:
 
 ```js
