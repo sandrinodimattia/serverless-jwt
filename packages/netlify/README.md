@@ -1,6 +1,8 @@
 # @serverless-jwt/netlify
 
-![http://npmjs.com/package/@serverless-jwt/netlify](https://img.shields.io/npm/l/@serverless-jwt/jwt-verifier) ![http://npmjs.com/package/@serverless-jwt/netlify](https://img.shields.io/npm/v/@serverless-jwt/jwt-verifier)
+[![http://npmjs.com/package/@serverless-jwt/netlify](https://img.shields.io/npm/l/@serverless-jwt/jwt-verifier)](https://www.npmjs.com/package/@serverless-jwt/netlify)
+[![downloads](https://img.shields.io/npm/dt/@serverless-jwt/netlify.svg)](https://npmjs.com/package/@serverless-jwt/netlify/v/latest)
+[![npm](https://img.shields.io/npm/v/@serverless-jwt/netlify.svg)](https://www.npmjs.com/package/@serverless-jwt/netlify)
 
 ## Installation
 
