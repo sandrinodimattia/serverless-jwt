@@ -32,6 +32,6 @@
   "dependencies": {
     "@serverless-jwt/jwt-verifier": "0.2.0",
     "@types/node-fetch": "^2.5.7",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   }
 }

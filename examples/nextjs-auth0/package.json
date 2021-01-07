@@ -22,7 +22,7 @@
     "@auth0/auth0-react": "^1.0.0",
     "@serverless-jwt/next": "^0.1.8",
     "next": "9.4.4",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }
