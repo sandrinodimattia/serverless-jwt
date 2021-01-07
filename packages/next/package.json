@@ -30,8 +30,7 @@
     "url": "https://github.com/sandrinodimattia/serverless-jwt/issues"
   },
   "dependencies": {
-    "@serverless-jwt/jwt-verifier": "0.2.0",
-    "next": "^9.4.4"
+    "@serverless-jwt/jwt-verifier": "0.2.0"
   },
   "devDependencies": {
     "@types/next": "^9.0.0",
@@ -39,6 +38,10 @@
     "@types/react-dom": "^16.9.8",
     "@types/webpack": "^4.41.21",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "next": "^9.4.4"
+  },
+  "peerDependencies": {
+    "next": ">=9.4.4"
   }
 }
