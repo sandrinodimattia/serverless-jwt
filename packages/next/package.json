@@ -1,6 +1,6 @@
 {
   "name": "@serverless-jwt/next",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "JWT verification for Next.js API Routes",
   "author": "Sandrino Di Mattia",
   "homepage": "https://github.com/sandrinodimattia/serverless-jwt#readme",
@@ -30,16 +30,16 @@
     "url": "https://github.com/sandrinodimattia/serverless-jwt/issues"
   },
   "dependencies": {
-    "@serverless-jwt/jwt-verifier": "0.2.0"
+    "@serverless-jwt/jwt-verifier": "0.2.1"
   },
   "devDependencies": {
     "@types/next": "^9.0.0",
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
     "@types/webpack": "^4.41.21",
+    "next": "^9.4.4",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "next": "^9.4.4"
+    "react-dom": "^16.13.1"
   },
   "peerDependencies": {
     "next": ">=9.4.4"

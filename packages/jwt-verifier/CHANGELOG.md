@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/sandrinodimattia/serverless-jwt/compare/v0.2.0...v0.2.1) (2021-01-11)
+
+**Note:** Version bump only for package @serverless-jwt/jwt-verifier
+
 # [0.2.0](https://github.com/sandrinodimattia/serverless-jwt/compare/v0.1.8...v0.2.0) (2020-07-29)
 
 **Note:** Version bump only for package @serverless-jwt/jwt-verifier

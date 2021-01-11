@@ -1,6 +1,6 @@
 {
   "name": "@serverless-jwt/cloudflare",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "JWT verification for Cloudflare Workers",
   "author": "Sandrino Di Mattia",
   "homepage": "https://github.com/sandrinodimattia/serverless-jwt#readme",
@@ -30,7 +30,7 @@
     "url": "https://github.com/sandrinodimattia/serverless-jwt/issues"
   },
   "dependencies": {
-    "@serverless-jwt/jwt-verifier": "0.2.0",
+    "@serverless-jwt/jwt-verifier": "0.2.1",
     "@types/node-fetch": "^2.5.7",
     "node-fetch": "^2.6.1"
   }
