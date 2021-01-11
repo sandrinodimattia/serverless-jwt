@@ -41,7 +41,7 @@
     "jsonwebtoken": "^8.5.1",
     "limiter": "^1.1.5",
     "lru-memoizer": "^2.1.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "wretch": "^1.7.2"
   }
 }
