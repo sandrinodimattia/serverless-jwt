@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="bg-gray-100 text-gray-700 body-font border-b">
       <div className="container mx-auto flex flex-wrap pt-3 pb-3 flex-col md:flex-row justify-between items-center">
-        <span className="text-xl">Gatsby &amp; Netlify Functions</span>
+        <span className="text-xl">Next.js &amp; Netlify Functions</span>
 
         {isAuthenticated ? (
           <button
