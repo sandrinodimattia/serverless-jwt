@@ -1,51 +1,54 @@
-import { NextApiResponse, NextApiRequest } from 'next';
-import { JwtVerifier, getTokenFromHeader } from '@serverless-jwt/jwt-verifier';
-import { NextJwtVerifierOptions, IApiRoute, NextAuthenticatedApiRequest } from './types';
+import { NextApiResponse, NextApiRequest, NextApiHandler } from 'next';
+import { JwtVerifier, getTokenFromHeader, JwtVerifierError } from '@serverless-jwt/jwt-verifier';
+import { NextJwtVerifierOptions, NextAuthenticatedApiRequest } from './types';
 
 /**
  * Middleware to validate a token and set the user context.
  */
 const validateJWT = (verifier: JwtVerifier, options: NextJwtVerifierOptions) => {
-  return (apiRoute: IApiRoute): IApiRoute => async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-    if (!req) {
-      throw new Error('Request is not available');
-    }
-
-    if (!res) {
-      throw new Error('Response is not available');
-    }
-
-    let claims;
-    let accessToken;
-
-    try {
-      accessToken = getTokenFromHeader(req.headers.authorization as string);
-      claims = await verifier.verifyAccessToken(accessToken);
-    } catch (err) {
-      if (typeof options.handleError !== 'undefined' && options.handleError !== null) {
-        return options.handleError(res, err);
+  return (handler: NextApiHandler): NextApiHandler => {
+    return async (req: NextApiRequest, res: NextApiResponse) => {
+      if (!req) {
+        throw new Error('Request is not available');
       }
 
-      return res.status(401).json({
-        error: err.code,
-        error_description: err.message
-      });
-    }
+      if (!res) {
+        throw new Error('Response is not available');
+      }
 
-    // Expose the identity in the client context.
-    const authenticatedRequest = req as NextAuthenticatedApiRequest;
-    authenticatedRequest.identityContext = {
-      token: accessToken as string,
-      claims: claims as Record<string, unknown>
+      let claims;
+      let accessToken;
+
+      try {
+        accessToken = getTokenFromHeader(req.headers.authorization as string);
+        claims = await verifier.verifyAccessToken(accessToken);
+      } catch (err) {
+        if (typeof options.handleError !== 'undefined' && options.handleError !== null) {
+          return options.handleError(res, err as JwtVerifierError);
+        }
+
+        const verifyError = err as JwtVerifierError;
+        return res.status(401).json({
+          error: verifyError.code,
+          error_description: verifyError.message
+        });
+      }
+
+      // Expose the identity in the client context.
+      const authenticatedRequest = req as NextAuthenticatedApiRequest;
+      authenticatedRequest.identityContext = {
+        token: accessToken as string,
+        claims: claims as Record<string, unknown>
+      };
+
+      // Continue.
+      return handler(req, res);
     };
-
-    // Continue.
-    return apiRoute(req, res);
   };
 };
 
-export interface NextJwtVerifier {
-  (apiRoute: IApiRoute): (req: NextApiRequest, res: NextApiResponse) => Promise<void>;
+interface NextJwtVerifier {
+  (handler: NextApiHandler): NextApiHandler;
 }
 
 /**
