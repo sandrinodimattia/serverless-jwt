@@ -8,10 +8,6 @@ export interface NextJwtVerifierOptions extends JwtVerifierOptions {
   handleError?(res: NextApiResponse, err: Error | JwtVerifierError): Promise<void>;
 }
 
-export interface IApiRoute {
-  (req: NextApiRequest, res: NextApiResponse): Promise<void>;
-}
-
 export interface IdentityContext {
   /**
    * The token that was provided.
